@@ -11,7 +11,7 @@ function ControlledCarousel() {
     };
 
     return (
-        <div className='container'>
+        <div>
             <Carousel activeIndex={index} onSelect={handleSelect} variant="dark">
                 <Carousel.Item>
                     <img className="d-block w-100" src={Img1} alt="First slide" />
