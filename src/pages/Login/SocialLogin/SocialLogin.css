@@ -1,0 +1,15 @@
+.social-btn {
+    /* margin: 0 auto; */
+}
+
+.social-icon {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    height: 30px;
+    width: 30px;
+}
+
+.social-icon:hover {
+    border: 1px solid green;
+}

@@ -1,14 +1,21 @@
-.registers{
-    background-color: rgba(93, 146, 128, 0.897);
+.register{
+    background-color: rgba(93, 146, 128, 0.315);
     border-radius: 20px;
     margin: 40px auto;
     padding: 20px;
     width: 50%;
 }
 
-.registers form input{
+.register form input{
     height: 40px;
     width: 100%;
     border-radius: 10px;
     margin: 0 auto;
+}
+
+@media only screen and (max-width:992px) {
+    .register {
+        width: 90%;
+        margin: 50px auto;
+    }
 }

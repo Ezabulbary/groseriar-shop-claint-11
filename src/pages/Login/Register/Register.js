@@ -3,6 +3,7 @@ import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loading from '../../../sheard/Loading/Loading';
+import SocialLogin from '../SocialLogin/SocialLogin';
 import './Register.css';
 
 const Register = () => {
@@ -65,26 +66,28 @@ const Register = () => {
     }
 
     return (
-        <div className='container registers'>
+        <div className='container register'>
             <h1 className='text-center text-success mb-3'>Please Register</h1>
+            <SocialLogin></SocialLogin>
+            <h5 className='d-flex justify-content-center'>or</h5>
             <form onSubmit={handleRegister}>
                 <br />
-                <label>Name</label>
+                <label className='m-2'>Name</label>
                 <br />
                 <input onChange={handleNameBlur} type="text" name="name" id="name" placeholder='Type Your Name' required />
 
                 <br />
-                <label>Email</label>
+                <label className='m-2'>Email</label>
                 <br />
                 <input onChange={handleEmailBlur} type="email" name="email" id="email" placeholder='Type Your Email' required />
 
                 <br />
-                <label>Password</label>
+                <label className='m-2'>Password</label>
                 <br />
                 <input onChange={handlePasswordBlur} type="password" name="password" id="password" placeholder='Type Your Password' required />
 
                 <br />
-                <label>Confirm Password</label>
+                <label className='m-2'>Confirm Password</label>
                 <br />
                 <input onChange={handleConfirmPasswordBlur} type="password" name="confirm-password" id="confirm-password" placeholder='Confirm Your Password' required />
 
