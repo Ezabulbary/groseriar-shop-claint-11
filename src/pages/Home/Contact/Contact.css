@@ -1,3 +1,57 @@
-.my-contact {
-    /* position: relative; */
+
+.contact-section {
+    padding: 100px 200px;
+}
+
+.font-icon {
+    padding-right: 10px;
+    color: rgb(23, 23, 23);
+}
+
+.form-input {
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+.input-section {
+    margin-top: 200px;
+    margin-bottom: 100px;
+}
+
+.my-btn {
+    margin: 10px;
+}
+
+@media only screen and (max-width:576px) {
+    .contact-section {
+        padding: 100px;
+    }
+
+    .input-section {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 0 50px 100px 50px;
+    }
+
+    .form-input {
+        width: 300px;
+    }
+}
+
+@media only screen and (min-width:577px) and (max-width:992px) {
+    .contact-section {
+        padding: 100px 250px;
+    }
+
+    .input-section {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 0 250px 100px 250px;
+    }
+
+    .form-input {
+        width: 300px;
+    }
 }
