@@ -1,4 +1,4 @@
-.register{
+.r-container{
     background-color: rgba(93, 146, 128, 0.315);
     border-radius: 20px;
     margin: 40px auto;
@@ -6,7 +6,7 @@
     width: 50%;
 }
 
-.register form input{
+.r-container form input{
     height: 40px;
     width: 100%;
     border-radius: 10px;
@@ -14,7 +14,7 @@
 }
 
 @media only screen and (max-width:992px) {
-    .register {
+    .r-container {
         width: 90%;
         margin: 50px auto;
     }

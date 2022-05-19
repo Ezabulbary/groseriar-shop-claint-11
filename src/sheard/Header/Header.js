@@ -23,7 +23,6 @@ const Header = () => {
                         <Nav.Link as={CustomLink} to='/addItems'>Add Items</Nav.Link>
                         <Nav.Link as={CustomLink} to='/myItems'>My Items</Nav.Link>
                         <Nav.Link as={CustomLink} to='/login'>Login</Nav.Link>
-                        <Nav.Link as={CustomLink} to='/register'>register</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

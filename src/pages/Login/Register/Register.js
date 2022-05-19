@@ -66,7 +66,7 @@ const Register = () => {
     }
 
     return (
-        <div className='container register'>
+        <div className='container r-container'>
             <h1 className='text-center text-success mb-3'>Please Register</h1>
             <SocialLogin></SocialLogin>
             <h5 className='d-flex justify-content-center'>or</h5>
