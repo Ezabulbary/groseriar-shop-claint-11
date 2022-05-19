@@ -37,7 +37,7 @@ const Header = () => {
                             user?.uid
                             &&
                             <>
-                                <Nav.Link as={CustomLink} to='/manageItems'>Manage Items</Nav.Link>
+                                <Nav.Link as={CustomLink} to='/manageAllItems'>Manage Items</Nav.Link>
                                 <Nav.Link as={CustomLink} to='/addItems'>Add Items</Nav.Link>
                                 <Nav.Link as={CustomLink} to='/myItems'>My Items</Nav.Link>
                             </>

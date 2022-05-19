@@ -1,21 +1,18 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const ManageItems = () => {
-    const { id } = useParams();
-    const navigate = useNavigate();
-
-    const addItems = () => {
-        navigate('/addItems')
-    }
+const ManageItems = ({ item }) => {
+    const { _id, name, image, about, price, quantity, supplier_name } = item;
 
     return (
-        <div className='text-center my-2'>
-            <h2>Manage Items</h2>
-
-
-            <button onClick={() => addItems(id)} className='btn btn-success m-4'>Add Items</button>
-        </div>
+        <tr>
+            <th scope="row">{_id}</th>
+            <td>{name}</td>
+            <td>{supplier_name}</td>
+            <td>{price}</td>
+            <td>{quantity}</td>
+            <td><button className='rounded'>Delete</button></td>
+        </tr>
     );
 };
 

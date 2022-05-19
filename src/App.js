@@ -15,6 +15,7 @@ import Categories from './pages/Home/Categories/Categories';
 import Inventory from './pages/Home/Inventories/Inventories';
 import InventoryAll from './pages/Home/InventoryAll/InventoryAll';
 import { ToastContainer } from 'react-toastify';
+import ManageAllItems from './pages/ManageAllItems/ManageAllItems';
 
 function App() {
   return (
@@ -34,9 +35,9 @@ function App() {
             <InventoryAll></InventoryAll>
           </RequireAuth>
         }></Route>
-        <Route path='/manageItems' element={
+        <Route path='/manageAllItems' element={
           <RequireAuth>
-            <ManageItems></ManageItems>
+            <ManageAllItems></ManageAllItems>
           </RequireAuth>
         }></Route>
         <Route path='/manageItems/:id' element={<ManageItems></ManageItems>}></Route>
