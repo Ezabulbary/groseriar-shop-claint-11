@@ -11,7 +11,7 @@ const About = () => {
     }
     
     return (
-        <div className='container text-center py-5 rounded' style={{ background: '#FCE6DF' }}>
+        <div className='text-center py-5 rounded' style={{ background: '#FCE6DF' }}>
             <div className='d-xl-flex align-items-center justify-content-center'>
                 <div>
                     <h2>About Us</h2>

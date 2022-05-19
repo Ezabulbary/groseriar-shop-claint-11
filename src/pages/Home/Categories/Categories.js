@@ -12,8 +12,7 @@ const Categories = () => {
 
     return (
         <div className='text-center py-5 rounded' style={{ background: '#FCE6DF' }}>
-            <h2>Categories</h2>
-            <h4 className='pb-4'>Get Your Product from Category</h4>
+            <h2 className='pb-4'>Categories</h2>
             <div className='row justify-content-center align-items-center'>
                 {
                     categories.map(category => <Category
