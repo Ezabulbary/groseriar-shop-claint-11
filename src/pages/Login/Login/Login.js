@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../../firebase.init';
 import Loading from '../../../sheard/Loading/Loading';
 import SocialLogin from '../SocialLogin/SocialLogin';
@@ -29,6 +30,10 @@ const Login = () => {
         setError(error.message)
     }
 
+    if (sending) {
+        return <Loading></Loading>
+    }
+
     const handleEmailBlur = event => {
         setEmail(event.target.value);
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(event.target.value)) {
@@ -54,10 +59,10 @@ const Login = () => {
     const resetPassword = async () => {
         if (email) {
             await sendPasswordResetEmail(email);
-            // toast('Sent email');
+            toast('Sent email');
         }
         else {
-            // toast('please enter your email address');
+            toast('please enter your email address');
         }
     }
 
@@ -81,7 +86,7 @@ const Login = () => {
 
                 <p>Don't have an Account?<Link className='ms-2' to='/register'>Register</Link></p>
                 <p>Forget Password?<button onClick={resetPassword} className='btn text-primary ms-1'>Reset Password</button></p>
-                {/* <ToastContainer /> */}
+                <ToastContainer />
 
                 <button onClick={() => signInWithEmailAndPassword(email, password)} className='btn btn-success'>Login</button>
             </form>
