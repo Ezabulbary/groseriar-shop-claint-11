@@ -11,7 +11,7 @@ import './Header.css';
 
 const Header = () => {
     const [user, loading] = useAuthState(auth);
-    console.log(user)
+
     if (loading) {
         return <Loading></Loading>
     }

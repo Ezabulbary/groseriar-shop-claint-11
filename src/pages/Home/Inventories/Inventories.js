@@ -11,7 +11,7 @@ const Inventories = () => {
     const navigate = useNavigate();
 
     const getItems = () => {
-        navigate('/inventoryAll')
+        navigate('/manageItems')
     }
 
     return (

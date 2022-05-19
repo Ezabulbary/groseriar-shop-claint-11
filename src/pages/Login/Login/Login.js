@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../../firebase.init';
 import Loading from '../../../sheard/Loading/Loading';
 import SocialLogin from '../SocialLogin/SocialLogin';
@@ -11,7 +12,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(''); 
     const [signInWithEmailAndPassword, signInUser, signInLoading, signInError] = useSignInWithEmailAndPassword(auth);
-    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+    const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -28,10 +29,6 @@ const Login = () => {
 
     if (signInError) {
         setError(error.message)
-    }
-
-    if (sending) {
-        return <Loading></Loading>
     }
 
     const handleEmailBlur = event => {
@@ -68,25 +65,24 @@ const Login = () => {
 
     return (
         <div className='container r-container'>
-            <h1 className='text-center text-success mb-3'>Please Register</h1>
+            <h1 className='text-center text-success mb-3'>Please Login</h1>
             <SocialLogin></SocialLogin>
             <h5 className='d-flex justify-content-center'>or</h5>
             <form onSubmit={handleSignIn}>
                 <br />
                 <label className='m-2'>Email</label>
                 <br />
-                <input onChange={handleEmailBlur} type="email" name="email" id="email" placeholder='Type Your Email' required />
+                <input onChange={handleEmailBlur} type="email" name="email" id="email" placeholder='Type Your Email'  />
 
                 <br />
                 <label className='m-2'>Password</label>
                 <br />
-                <input onChange={handlePasswordBlur} type="password" name="password" id="password" placeholder='Type Your Password' required />
+                <input onChange={handlePasswordBlur} type="password" name="password" id="password" placeholder='Type Your Password'  />
 
                 <p className='text-danger'>{error}</p>
 
                 <p>Don't have an Account?<Link className='ms-2' to='/register'>Register</Link></p>
                 <p>Forget Password?<button onClick={resetPassword} className='btn text-primary ms-1'>Reset Password</button></p>
-                <ToastContainer />
 
                 <button onClick={() => signInWithEmailAndPassword(email, password)} className='btn btn-success'>Login</button>
             </form>
