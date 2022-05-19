@@ -2,8 +2,8 @@ import React from 'react';
 import { Card, CardGroup, Figure } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const Inventory = ({item}) => {
-    const { name, image, about, price, quantity, supplier_name} = item;
+const Inventory = ({ item }) => {
+    const { name, image, about, price, quantity, supplier_name } = item;
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -20,10 +20,10 @@ const Inventory = ({item}) => {
                     </Figure>
                     <Card.Body>
                         <Card.Title>{name}</Card.Title>
-                        <p style={{textAlign:'justify'}}>{about}</p>
-                        <Card.Text><span className='fw-bold'>Price:</span>{price}</Card.Text>
-                        <Card.Text><span className='fw-bold'>Quantity:</span>{quantity}</Card.Text>
-                        <Card.Text><span className='fw-bold'>Supplier Name:</span>{supplier_name}</Card.Text>
+                        <p style={{ textAlign: 'justify' }}>{about}</p>
+                        <Card.Text><span className='fw-bold'>Price:</span> {price}</Card.Text>
+                        <Card.Text><span className='fw-bold'>Quantity:</span> {quantity}</Card.Text>
+                        <Card.Text><span className='fw-bold'>Supplier Name:</span> {supplier_name}</Card.Text>
                         <button onClick={() => getItems(id)} className='btn btn-success m-4'>Stock Update</button>
                     </Card.Body>
                 </Card>
