@@ -1,0 +1,14 @@
+.registers{
+    background-color: rgba(93, 146, 128, 0.897);
+    border-radius: 20px;
+    margin: 40px auto;
+    padding: 20px;
+    width: 50%;
+}
+
+.registers form input{
+    height: 40px;
+    width: 100%;
+    border-radius: 10px;
+    margin: 0 auto;
+}

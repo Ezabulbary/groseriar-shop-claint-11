@@ -11,6 +11,7 @@ import AddItems from './pages/AddItems/AddItems';
 import MyItems from './pages/MyItems/MyItems';
 import RequireAuth from './pages/Login/RequireAuth/RequireAuth';
 import Register from './pages/Login/Register/Register';
+import Categories from './pages/Home/Categories/Categories';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='/about' element={<About></About>}></Route>
+        <Route path='/categories' element={<Categories></Categories>}></Route>
         <Route path='/manageItems' element={
           <RequireAuth>
             <ManageItems></ManageItems>
