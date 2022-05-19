@@ -11,7 +11,7 @@ const Inventories = () => {
     const navigate = useNavigate();
 
     const getItems = () => {
-        navigate('/myItems')
+        navigate('/inventoryAll')
     }
 
     return (
@@ -26,7 +26,7 @@ const Inventories = () => {
                     ></Inventory>)
                 }
             </div>
-            <button onClick={() => getItems(id)} className='btn btn-success m-4'>All Fruits</button>
+            <button onClick={() => getItems(id)} className='btn btn-success m-4'>All Items</button>
         </div>
     );
 };

@@ -1,24 +1,67 @@
 import React, { useState } from 'react';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import Loading from '../../../sheard/Loading/Loading';
 import './Register.css';
 
 const Register = () => {
-    const [name, setName] = useState();
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    const [
-        createUserWithEmailAndPassword,
-        user,
-        loading,
-        error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState('');
+    const [createUserWithEmailAndPassword, createUser, createLoading, createError] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
-    const handleRegister = event =>{
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    let from = location?.state?.from?.pathname || "/";
+
+    if (createUser) {
+        navigate(from, { replace: true });
+    }
+
+    if (createLoading) {
+        return <Loading></Loading>
+    }
+
+    if (createError) {
+        setError(error.message)
+    }
+
+    const handleNameBlur = event => {
+        setName(event.target.value)
+    }
+
+    const handleEmailBlur = event => {
+        setEmail(event.target.value);
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(event.target.value)) {
+            return (true)
+        }
+        setError("You have entered an invalid email address!")
+        return;
+    }
+
+    const handlePasswordBlur = event => {
+        setPassword(event.target.value);
+        if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(event.target.value)) {
+            return (true)
+        }
+        setError("6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter!")
+        return;
+    }
+
+    const handleConfirmPasswordBlur = event => {
+        setConfirmPassword(event.target.value);
+    }
+
+    const handleRegister = event => {
         event.preventDefault();
-        setEmail(event.target.email.value);
-        setPassword(event.target.email.value);
+        if (password !== confirmPassword) {
+            setError("Password didn't match")
+            return;
+        }
     }
 
     return (
@@ -28,22 +71,22 @@ const Register = () => {
                 <br />
                 <label>Name</label>
                 <br />
-                <input type="text" name="name" id="name" placeholder='Type Your Name' required />
+                <input onChange={handleNameBlur} type="text" name="name" id="name" placeholder='Type Your Name' required />
 
                 <br />
                 <label>Email</label>
                 <br />
-                <input type="email" name="email" id="email" placeholder='Type Your Email' required />
+                <input onChange={handleEmailBlur} type="email" name="email" id="email" placeholder='Type Your Email' required />
 
                 <br />
                 <label>Password</label>
                 <br />
-                <input type="password" name="password" id="password" placeholder='Type Your Password' required />
+                <input onChange={handlePasswordBlur} type="password" name="password" id="password" placeholder='Type Your Password' required />
 
                 <br />
                 <label>Confirm Password</label>
                 <br />
-                <input type="password" name="confirm-password" id="confirm-password" placeholder='Confirm Your Password' required />
+                <input onChange={handleConfirmPasswordBlur} type="password" name="confirm-password" id="confirm-password" placeholder='Confirm Your Password' required />
 
                 <p className='text-danger'>{error}</p>
 

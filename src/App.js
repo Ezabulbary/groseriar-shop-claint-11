@@ -13,6 +13,7 @@ import RequireAuth from './pages/Login/RequireAuth/RequireAuth';
 import Register from './pages/Login/Register/Register';
 import Categories from './pages/Home/Categories/Categories';
 import Inventory from './pages/Home/Inventories/Inventories';
+import InventoryAll from './pages/Home/InventoryAll/InventoryAll';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/categories' element={<Categories></Categories>}></Route>
         <Route path='/inventory' element={<Inventory></Inventory>}></Route>
         <Route path='/inventory/:id' element={<Inventory></Inventory>}></Route>
+        <Route path='/inventoryAll' element={<InventoryAll></InventoryAll>}></Route>
         <Route path='/manageItems' element={
           <RequireAuth>
             <ManageItems></ManageItems>

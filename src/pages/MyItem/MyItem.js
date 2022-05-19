@@ -1,11 +1,10 @@
 import React from 'react';
-import { Card, CardGroup, Figure } from 'react-bootstrap';
 
-const MyItem = ({ item }) => {
-    const { name, image, about, price, quantity, supplier_name } = item;
+const MyItem = () => {
+    
     return (
         <div className='col-8 col-md-4 col-lg-3 m-2 p-2'>
-            <CardGroup>
+            {/* <CardGroup>
                 <Card>
                     <Figure className="figure">
                         <img src={image} className="figure-img img-fluid rounded" alt="..." />
@@ -19,7 +18,7 @@ const MyItem = ({ item }) => {
                         <button className='btn btn-success m-4'>Stock Update</button>
                     </Card.Body>
                 </Card>
-            </CardGroup>
+            </CardGroup> */}
         </div>
     );
 };
