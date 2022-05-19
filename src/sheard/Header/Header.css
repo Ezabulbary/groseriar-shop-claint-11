@@ -1,0 +1,7 @@
+.logout-btn{
+    border-radius: 30px;
+}
+
+.logout-btn:hover {
+    color: orange;
+}

@@ -8,7 +8,7 @@ function CustomLink({ children, to, ...props }) {
     return (
         <div>
             <Link
-                style={{ color: match ? "green" : "black", textDecoration: match ? "underline" : "none"}}
+                style={{ color: match ? "green" : "black", fontWeight: match ? "bold" : "normal"}}
                 to={to}
                 {...props}
             >
