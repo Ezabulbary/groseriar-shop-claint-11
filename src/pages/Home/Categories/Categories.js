@@ -9,8 +9,9 @@ const Categories = () => {
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])
+
     return (
-        <div className='text-center py-5 rounded' style={{ background:'#FCE6DF'}}>
+        <div className='text-center py-5 rounded' style={{ background: '#FCE6DF' }}>
             <h2>Categories</h2>
             <h4 className='pb-4'>Get Your Product from Category</h4>
             <div className='row justify-content-center align-items-center'>
