@@ -1,6 +1,8 @@
 import React from 'react';
+import useItems from '../../hook/useItems';
 
 const AddItems = () => {
+    const [items, setItems] = useItems();
     return (
         <div className=' container '>
             <h2 className='text-center my-4'>Add Items</h2>
