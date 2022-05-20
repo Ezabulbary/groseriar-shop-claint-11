@@ -33,7 +33,7 @@ const InventoryAllDetails = () => {
                     </div>
                 </div>
             </div>
-            <Link to={`/manageAllItems/${inventoryId}`}>
+            <Link to={'/manageAllItems'}>
                 <button className='btn btn-success m-4'>Manage Items</button>
             </Link>
         </div>
