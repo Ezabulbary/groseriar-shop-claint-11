@@ -4,7 +4,7 @@ const AddItems = () => {
     return (
         <div className=' container '>
             <h2 className='text-center my-4'>Add Items</h2>
-            <form >
+            <form className='border p-5 m-5'>
                 <div className="mb-3">
                     <label for="name" className="form-label">Name</label>
                     <input type="text" className="form-control" id="name" aria-describedby="emailHelp" placeholder='type your item name' />

@@ -14,7 +14,7 @@ const ManageAllItems = () => {
     return (
         <div className='container text-center py-5'>
             <h2 className='mb-4'>Manage Items</h2>
-            <div className='row justify-content-center align-items-center'>
+            <div className='table-responsive'>
                 <table class="table table-success table-striped">
                     <thead>
                         <tr>

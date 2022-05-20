@@ -1,15 +1,14 @@
 import React from 'react';
 import { Card, CardGroup, Figure } from 'react-bootstrap';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Inventory = ({ item }) => {
-    const { name, image, about, price, quantity, supplier_name } = item;
+    const { _id, name, image, about, price, quantity, supplier_name } = item;
 
-    const { id } = useParams();
     const navigate = useNavigate();
 
     const getItems = () => {
-        navigate('/inventoryAll')
+        navigate(`/InventoryAllDetails/${_id}`)
     }
     return (
         <div className='col-8 col-md-4 col-lg-3 m-2 p-2'>
@@ -24,7 +23,7 @@ const Inventory = ({ item }) => {
                         <Card.Text><span className='fw-bold'>Price:</span> {price}</Card.Text>
                         <Card.Text><span className='fw-bold'>Quantity:</span> {quantity}</Card.Text>
                         <Card.Text><span className='fw-bold'>Supplier Name:</span> {supplier_name}</Card.Text>
-                        <button onClick={() => getItems(id)} className='btn btn-success m-4'>Stock Update</button>
+                        <button onClick={() => getItems(_id)} className='btn btn-success m-4'>Stock Update</button>
                     </Card.Body>
                 </Card>
             </CardGroup>

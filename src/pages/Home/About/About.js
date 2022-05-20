@@ -12,7 +12,7 @@ const About = () => {
 
     return (
         <div className='text-center py-5 rounded' style={{ background: '#FCE6DF' }}>
-            <h2>About Us</h2>
+            <h2 className='mb-xl-5'>About Us</h2>
             <div className='d-xl-flex align-items-center justify-content-center'>
                 <div className='p-4'>
                     <p className='p-2' style={{ textAlign: 'justify' }}>
@@ -25,7 +25,7 @@ const About = () => {
                     <button onClick={() => getAbout(id)} className='btn btn-success m-4'>About More</button>
                 </div>
                 <img
-                    className='rounded img-fluid pe-4'
+                    className='rounded img-fluid pe-xl-4'
                     src={AboutImg}
                     alt="aboutImage"
                 />

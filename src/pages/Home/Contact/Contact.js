@@ -10,10 +10,10 @@ const Contact = () => {
             <div className='col-12 col-lg-6 contact-section'>
                 <h1 className='text-success'>CONTACT US</h1>
                 <p><FontAwesomeIcon className='font-icon' icon={faPhone} />+1 650-444-0000</p>
-                <p><Link to='/mailto:makeup@ovon.com'><FontAwesomeIcon className='font-icon' icon={faEnvelope} />makeup@ovon.com</Link></p>
+                <p><a href='mailto: hr@groseriar.com'><FontAwesomeIcon className='font-icon' icon={faEnvelope} />hr@groseriar.com</a></p>
                 <p><FontAwesomeIcon className='font-icon' icon={faLocationDot} />525 West Ave, CT 06850 Norwalk</p>
                 <p><FontAwesomeIcon className='font-icon' icon={faClock} />Mon-Fri: 08.00 - 19.00, Sunday: Closed</p>
-                <p><Link to='/'><FontAwesomeIcon className='font-icon' icon={faMapLocationDot} />Google Maps</Link></p>
+                <p><Link to='*'><FontAwesomeIcon className='font-icon' icon={faMapLocationDot} />Google Maps</Link></p>
             </div>
             <div className='col-12 col-lg-6 input-section'>
                 <h3 className='text-success'>GET IN TOUCH</h3>
