@@ -6,7 +6,6 @@ import Blogs from './pages/Blogs/Blogs';
 import NotFound from './sheard/NotFound/NotFound';
 import About from './pages/Home/About/About';
 import Login from './pages/Login/Login/Login';
-import ManageItems from './pages/ManageItems/ManageItems';
 import AddItems from './pages/AddItems/AddItems';
 import MyItems from './pages/MyItems/MyItems';
 import RequireAuth from './pages/Login/RequireAuth/RequireAuth';
@@ -24,8 +23,8 @@ function App() {
         <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='/about' element={<About></About>}></Route>
-        <Route path='/about/:id' element={<About></About>}></Route>
-        <Route path='/inventory/:id' element={
+        <Route path='/:aboutId' element={<About></About>}></Route>
+        <Route path='/inventory/:inventoryId' element={
           <RequireAuth>
             <InventoryAllDetails></InventoryAllDetails>
           </RequireAuth>
@@ -35,7 +34,6 @@ function App() {
             <ManageAllItems></ManageAllItems>
           </RequireAuth>
         }></Route>
-        <Route path='/manageItems/:id' element={<ManageItems></ManageItems>}></Route>
         <Route path='/addItems' element={
           <RequireAuth>
             <AddItems></AddItems>

@@ -7,17 +7,17 @@ const Inventories = () => {
     const [items] = useItems();
     const homeItems = (items.slice(4));
 
-    const { id } = useParams();
+    const { inventoryId } = useParams();
     const navigate = useNavigate();
 
     const getItems = () => {
-        navigate('/manageItems')
+        navigate('/manageAllItems')
     }
 
     return (
         <div className='text-center py-5'>
             <h2>Inventory Items</h2>
-            <h4 className='pb-4'>Get Your Product from Items</h4>
+            <h5 className='pb-4'>Get Your Product from Items</h5>
             <div className='row justify-content-center align-items-center'>
                 {
                     homeItems.map(item => <Inventory
@@ -26,7 +26,7 @@ const Inventories = () => {
                     ></Inventory>)
                 }
             </div>
-            <button onClick={() => getItems(id)} className='btn btn-success m-4'>All Items</button>
+            <button onClick={() => getItems(inventoryId)} className='btn btn-success m-4'>All Items</button>
         </div>
     );
 };

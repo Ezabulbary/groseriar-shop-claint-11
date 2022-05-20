@@ -3,13 +3,12 @@ import { Link, useParams } from 'react-router-dom';
 import useItemDetail from '../../../hook/useItemDetail';
 
 const InventoryAllDetails = () => {
-    const [item] = useItemDetail();
+    const { inventoryId } = useParams();
+    const [item] = useItemDetail(inventoryId);
     const { _id, name, image, about, price, quantity, supplier_name } = item;
 
-    const { id } = useParams();
-
     return (
-        <div>
+        <div className='container text-center py-5'>
             <div style={{ width: '50%', margin: '0 auto' }}>
                 <div class="input-group mb-3">
                     <input type="number" class="form-control" placeholder="Add Quantity" aria-label="Recipient's username" aria-describedby="button-addon2" />
@@ -34,7 +33,7 @@ const InventoryAllDetails = () => {
                     </div>
                 </div>
             </div>
-            <Link to={`/checkout/${id}`}>
+            <Link to={`/manageAllItems/${inventoryId}`}>
                 <button className='btn btn-success m-4'>Manage Items</button>
             </Link>
         </div>

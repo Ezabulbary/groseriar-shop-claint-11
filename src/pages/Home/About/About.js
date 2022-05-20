@@ -3,7 +3,7 @@ import AboutImg from '../../../images/about/about.png';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const About = () => {
-    const { id } = useParams();
+    const { aboutId } = useParams();
     const navigate = useNavigate();
 
     const getAbout = () => {
@@ -22,7 +22,7 @@ const About = () => {
                         A warehouse web is an activity of electronically buying or selling
                         wholesale products on online services or over the Internet. warehouse draws on technologies such as mobile commerce, electronic funds transfer, supply chain management, Internet marketing, online transaction processing, electronic data interchange (EDI), and inventory management systems. The warehouse is in turn driven by the technological advances of the semiconductor industry and is the largest sector of the electronics industry.
                     </p>
-                    <button onClick={() => getAbout(id)} className='btn btn-success m-4'>About More</button>
+                    <button onClick={() => getAbout(aboutId)} className='btn btn-success m-4'>About More</button>
                 </div>
                 <img
                     className='rounded img-fluid pe-xl-4'
