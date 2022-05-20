@@ -1,37 +1,43 @@
 import React from 'react';
-import useItems from '../../hook/useItems';
+import { useForm } from "react-hook-form";
 
 const AddItems = () => {
-    const [items, setItems] = useItems();
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        console.log(data)
+        const url = `http://localhost:5000/items`;
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result)
+            })
+    };
+
     return (
-        <div className=' container '>
-            <h2 className='text-center my-4'>Add Items</h2>
-            <form className='border p-5 m-5'>
-                <div className="mb-3">
-                    <label for="name" className="form-label">Name</label>
-                    <input type="text" className="form-control" id="name" aria-describedby="emailHelp" placeholder='type your item name' />
-                </div>
-                <div className="mb-3">
-                    <label for="name" className="form-label">Supplier Name</label>
-                    <input type="text" className="form-control" id="name" aria-describedby="emailHelp" placeholder='type your supplies name' />
-                </div>
-                <div className="mb-3">
-                    <label for="price" className="form-label">Price</label>
-                    <input type="number" className="form-control" id="price" placeholder='type your Price' />
-                </div>
-                <div className="mb-3">
-                    <label for="quantity" className="form-label">Quantity</label>
-                    <input type="number" className="form-control" id="quantity" placeholder='type your Quantity' />
-                </div>
-                <div className="mb-3">
-                    <label for="quantity" className="form-label">Quantity</label>
-                    <textarea name="text" className="form-control" id="quantity" cols="30" rows="10" placeholder='type your text'></textarea>
-                </div>
-                <div className="mb-3">
-                    <label for="name" className="form-label">Image</label>
-                    <input type="file" className="form-control" id="name" aria-describedby="emailHelp" placeholder='type your supplies name' />
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+        <div className=' container d-md-flex justify-content-center'>
+            <form onSubmit={handleSubmit(onSubmit)} className='border rounded text-center p-5 m-5'>
+                <legend className='my-4'>Add Items</legend>
+                <input className='mb-4' placeholder='Name' {...register("name", { required: true })} />
+                <br />
+                <input className='mb-4' placeholder='Supplier Name' {...register("supplierName", { required: true })} />
+                <br />
+                <input className='mb-4' placeholder='Price' {...register("price", { required: true })} />
+                <br />
+                <input className='mb-4' placeholder='Quantity' {...register("quantity", { required: true })} />
+                <br />
+                <textarea className='mb-4' placeholder='Description' {...register("about", { required: true })} />
+                <br />
+                <input className='mb-4' placeholder='Image' {...register("img", { required: true })} />
+
+                {errors.exampleRequired && <span>This field is required</span>}
+                <br />
+                <input type="Submit" value="Add Services" />
             </form>
         </div>
     );
