@@ -1,16 +1,10 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useItems from '../../hook/useItems';
 import ManageItems from '../ManageItems/ManageItems';
 
 const ManageAllItems = () => {
     const [items] = useItems();
-    const { id } = useParams();
-    const navigate = useNavigate();
-
-    const addItems = () => {
-        navigate('/addItems')
-    }
     return (
         <div className='container text-center py-5'>
             <h2 className='mb-4'>Manage Items</h2>
@@ -36,7 +30,9 @@ const ManageAllItems = () => {
                     </tbody>
                 </table>
             </div>
-            <button onClick={() => addItems(id)} className='btn btn-success m-4'>Add Items</button>
+            <Link to={'/addItems'}>
+                <button className='btn btn-success m-4'>Add Items</button>
+            </Link>
         </div>
     );
 };

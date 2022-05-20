@@ -7,12 +7,22 @@ const InventoryAllDetails = () => {
     const [item] = useItemDetail(inventoryId);
     const { _id, name, image, about, price, quantity, supplier_name } = item;
 
+    const soldItems = id => {
+        const sold = [];
+        
+        console.log('sold')
+    }
+
+    const addQuantity = id =>{
+        console.log('add quantity', id)
+    }
+
     return (
         <div className='container text-center py-5'>
             <div style={{ width: '50%', margin: '0 auto' }}>
                 <div class="input-group mb-3">
                     <input type="number" class="form-control" placeholder="Add Quantity" aria-label="Recipient's username" aria-describedby="button-addon2" />
-                    <button class="btn btn-outline-success" type="button">Restock</button>
+                    <button onClick={() =>addQuantity(_id)} type="button" class="btn btn-outline-success">Restock</button>
                 </div>
             </div>
             <div className="card m-3">
@@ -27,8 +37,9 @@ const InventoryAllDetails = () => {
                             <p className="card-text" style={{ textAlign: 'justify' }}>{about}</p>
                             <p className="card-text"><span className='fw-bold'>Price:</span> {price}</p>
                             <p className="card-text"><span className='fw-bold'>Quantity:</span> {quantity}</p>
+                            <p className="card-text"><span className='fw-bold'>Sold:</span> {0}</p>
                             <p className="card-text"><span className='fw-bold'>Supplier Name:</span> {supplier_name}</p>
-                            <button className='btn btn-success m-4'>Delivered</button>
+                            <button onClick={soldItems} className='btn btn-success m-4'>Delivered</button>
                         </div>
                     </div>
                 </div>
