@@ -1,15 +1,8 @@
 import React from 'react';
 import AboutImg from '../../../images/about/about.png';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const About = () => {
-    const { aboutId } = useParams();
-    const navigate = useNavigate();
-
-    const getAbout = () => {
-        navigate('/about')
-    }
-
     return (
         <div className='text-center py-5 rounded' style={{ background: '#FCE6DF' }}>
             <h2 className='mb-xl-5'>About Us</h2>
@@ -22,7 +15,9 @@ const About = () => {
                         A warehouse web is an activity of electronically buying or selling
                         wholesale products on online services or over the Internet. warehouse draws on technologies such as mobile commerce, electronic funds transfer, supply chain management, Internet marketing, online transaction processing, electronic data interchange (EDI), and inventory management systems. The warehouse is in turn driven by the technological advances of the semiconductor industry and is the largest sector of the electronics industry.
                     </p>
-                    <button onClick={() => getAbout(aboutId)} className='btn btn-success m-4'>About More</button>
+                    <Link to={'/about'}>
+                        <button className='btn btn-success m-4'>About More</button>
+                    </Link>
                 </div>
                 <img
                     className='rounded img-fluid pe-xl-4'
