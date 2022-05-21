@@ -38,7 +38,7 @@ const ManageAllItems = () => {
                     </thead>
                     <tbody>
                         {
-                            items.map(item => <tr>
+                            items.map(item => <tr key={item._id}>
                                 <th scope="row">{item._id}</th>
                                 <td>{item.name}</td>
                                 <td>{item.supplier_name}</td>

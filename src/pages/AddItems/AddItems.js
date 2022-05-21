@@ -45,7 +45,7 @@ const AddItems = () => {
                 <br />
                 <textarea className='w-100 mb-4' placeholder='Description' {...register("about", { required: true })} />
                 <br />
-                <input className='w-100 mb-4' placeholder='Image' {...register("img", { required: true })} />
+                <input className='w-100 mb-4' placeholder='Image' {...register("image", { required: true })} />
 
                 {errors.exampleRequired && <span>This field is required</span>}
                 <br />
