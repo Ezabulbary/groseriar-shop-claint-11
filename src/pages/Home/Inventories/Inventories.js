@@ -5,7 +5,7 @@ import Inventory from '../Inventory/Inventory';
 
 const Inventories = () => {
     const [items] = useItems();
-    const homeItems = (items.slice(4));
+    const homeItems = (items.slice(2, 8));
 
     const { inventoryId } = useParams();
     const navigate = useNavigate();
