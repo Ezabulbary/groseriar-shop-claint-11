@@ -15,8 +15,12 @@ const AddItems = () => {
                 const { data } = response;
                 if (data.insertedId) {
                     toast('Your Item is Added!!!');
+                    data.target.reset();
                 }
             })
+            .catch( errors =>{
+                console.log(errors);
+            });
     };
 
     return (
@@ -25,9 +29,9 @@ const AddItems = () => {
                 <legend className='my-4'>Add Items</legend>
                 <input className='w-100 mb-4' placeholder='Item Name' {...register("name", { required: true })} />
                 <br />
-                <input className='w-100 mb-4' placeholder='Supplier Name' {...register("supplier_name", { required: true })} />
+                <input className='w-100 mb-4' placeholder='Supplier Name' defaultValue={user?.displayName} readOnly disabled {...register("supplier_name", { required: true })} />
                 <br />
-                <input className='w-100 mb-4' placeholder='Supplier Email' defaultValue={user?.email} readOnly {...register("email", { required: true })} />
+                <input className='w-100 mb-4' placeholder='Supplier Email' defaultValue={user?.email} readOnly disabled {...register("email", { required: true })} />
                 <br />
                 <input className='w-100 mb-4' placeholder='Price' {...register("price", { required: true })} />
                 <br />
