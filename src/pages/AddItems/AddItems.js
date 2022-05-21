@@ -1,10 +1,13 @@
 import axios from 'axios';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import auth from '../../firebase.init';
 
 const AddItems = () => {
+    const [user] = useAuthState(auth);
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
         axios.post('http://localhost:5000/items', data)
@@ -20,9 +23,11 @@ const AddItems = () => {
         <div className=' container d-md-flex justify-content-center'>
             <form onSubmit={handleSubmit(onSubmit)} className='border rounded text-center p-5 m-5'>
                 <legend className='my-4'>Add Items</legend>
-                <input className='w-100 mb-4' placeholder='Name' {...register("name", { required: true })} />
+                <input className='w-100 mb-4' placeholder='Item Name' {...register("name", { required: true })} />
                 <br />
                 <input className='w-100 mb-4' placeholder='Supplier Name' {...register("supplier_name", { required: true })} />
+                <br />
+                <input className='w-100 mb-4' placeholder='Supplier Email' defaultValue={user?.email} readOnly {...register("email", { required: true })} />
                 <br />
                 <input className='w-100 mb-4' placeholder='Price' {...register("price", { required: true })} />
                 <br />
