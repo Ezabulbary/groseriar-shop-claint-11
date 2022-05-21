@@ -4,26 +4,34 @@ import useItemDetail from '../../../hook/useItemDetail';
 
 const InventoryAllDetails = () => {
     const { inventoryId } = useParams();
-    const [item] = useItemDetail(inventoryId);
+    const [item ] = useItemDetail(inventoryId);
     const { _id, name, image, about, price, quantity, supplier_name } = item;
 
-    const soldItems = id => {
-        const sold = [];
-        
-        console.log('sold')
-    }
+    const addQuantity = event => {
+        event.preventDefault();
+        const quantity = event.target.quantity.value;
+        fetch(`http://localhost:5000/items/${inventoryId}`, {
+            method: 'PUT',
+            headers: {
+                'content-type' : 'aplication/json'
+            },
+            body: JSON.stringify(quantity)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            event.target.reset();
+        })
+    };
 
-    const addQuantity = id =>{
-        console.log('add quantity', id)
-    }
 
     return (
         <div className='container text-center py-5'>
             <div style={{ width: '50%', margin: '0 auto' }}>
-                <div class="input-group mb-3">
-                    <input type="number" class="form-control" placeholder="Add Quantity" aria-label="Recipient's username" aria-describedby="button-addon2" />
-                    <button onClick={() =>addQuantity(_id)} type="button" class="btn btn-outline-success">Restock</button>
-                </div>
+                <form onClick={addQuantity} class="input-group mb-3">
+                    <input type="text" name="quantity" class="form-control" placeholder="Add Quantity" aria-label="Recipient's username" aria-describedby="button-addon2" />
+                    <button type="button" class="btn btn-outline-success">Restock</button>
+                </form>
             </div>
             <div className="card m-3">
                 <div className="row">
@@ -39,7 +47,7 @@ const InventoryAllDetails = () => {
                             <p className="card-text"><span className='fw-bold'>Quantity:</span> {quantity}</p>
                             <p className="card-text"><span className='fw-bold'>Sold:</span> {0}</p>
                             <p className="card-text"><span className='fw-bold'>Supplier Name:</span> {supplier_name}</p>
-                            <button onClick={soldItems} className='btn btn-success m-4'>Delivered</button>
+                            <button className='btn btn-success m-4'>Delivered</button>
                         </div>
                     </div>
                 </div>

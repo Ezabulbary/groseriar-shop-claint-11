@@ -4,10 +4,11 @@ import { useAuthState, useSendEmailVerification } from 'react-firebase-hooks/aut
 import auth from "../../../firebase.init";
 import Loading from '../../../sheard/Loading/Loading';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const RequireAuth = ({children}) => {
-    const [sendEmailVerification] = useSendEmailVerification(auth);
+const RequireAuth = ({ children }) => {
     const [user, loading] = useAuthState(auth);
+    const [sendEmailVerification] = useSendEmailVerification(auth);
     let location = useLocation();
 
     if (loading) {
@@ -19,18 +20,13 @@ const RequireAuth = ({children}) => {
     }
 
     if (user.providerData[0]?.providerId === 'password' && !user.emailVerified) {
-        return <div className='text-center mt-5'>
-            <h3 className='text-danger'>Your Email is not verified!!</h3>
-            <h5 className='text-success'> Please Verify your email address</h5>
-            <button
-                className='btn btn-primary'
+        return <div className='text-center my-5'>
+            <h3 className='text-danger'>Your Email is not verified</h3>
+            <button className='btn btn-success'
                 onClick={async () => {
                     await sendEmailVerification();
                     toast('Sent email');
-                }}
-            >
-                Send Verification Email Again
-            </button>
+                }}>Again Send Verification Email</button>
         </div>
     }
 

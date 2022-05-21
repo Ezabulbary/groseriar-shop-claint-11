@@ -30,26 +30,26 @@ const MyItems = () => {
         getMyItems()
     }, [user]);
 
-    const deleteItems = id => {
-        const proceed = window.confirm('Are you sure?');
-        if (proceed) {
-            const url = `http://localhost:5000/items/${id}`;
-            fetch(url, {
-                method: 'DELETE'
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data)
-                    const remaining = myItems.filter(item => item._id !== id)
-                    setMyItems(remaining);
-                });
-        }
-    }
+    // const deleteItems = id => {
+    //     const proceed = window.confirm('Are you sure?');
+    //     if (proceed) {
+    //         const url = `http://localhost:5000/items/${id}`;
+    //         fetch(url, {
+    //             method: 'DELETE'
+    //         })
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 console.log(data)
+    //                 const remaining = myItems.filter(item => item._id !== id)
+    //                 setMyItems(remaining);
+    //             });
+    //     }
+    // }
 
     return (
         <div className='container mx-auto text-center'>
-            <h2 className='my-4'>My All Items</h2>
-            {
+            <h2 className='my-4'>My All Items {myItems.length}</h2>
+            {/* {
                 myItems.map(item => <div className='table-responsive'>
                     <table class="table table-success table-striped">
                         <thead>
@@ -74,7 +74,7 @@ const MyItems = () => {
                         </tbody>
                     </table>
                 </div>)
-            }
+            } */}
         </div>
     );
 };
