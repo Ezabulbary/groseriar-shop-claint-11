@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 
-const useItems = () =>{
+const useItems = () => {
     const [items, setItems] = useState([]);
 
-    useEffect( () =>{
-        fetch('http://localhost:5000/items')
-        .then(res => res.json())
-        .then(data => setItems(data))
+    useEffect(() => {
+        fetch('https://whispering-ravine-60008.herokuapp.com/items')
+            .then(res => res.json())
+            .then(data => setItems(data))
     }, []);
     return [items, setItems];
 }

@@ -14,9 +14,9 @@ const AddItems = () => {
     const location = useLocation();
 
     let from = location?.state?.from?.pathname || "/myItems";
-    
+
     const onSubmit = data => {
-        axios.post('http://localhost:5000/items', data)
+        axios.post('https://whispering-ravine-60008.herokuapp.com/items', data)
             .then(response => {
                 const { data } = response;
                 if (data.insertedId) {
@@ -24,7 +24,7 @@ const AddItems = () => {
                     navigate(from, { replace: true });
                 }
             })
-            .catch( errors =>{
+            .catch(errors => {
                 console.log(errors);
             });
     };

@@ -15,7 +15,7 @@ const Inventories = () => {
         const getMyItems = async () => {
             const email = user?.email;
             if (email) {
-                const url = `http://localhost:5000/items/item/${email}`;
+                const url = `https://whispering-ravine-60008.herokuapp.com/items/item/${email}`;
                 const { data } = await axios.get(url);
                 console.log(data)
                 setItems(data)

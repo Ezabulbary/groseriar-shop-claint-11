@@ -10,8 +10,8 @@ const MyItems = () => {
     useEffect(() => {
         const getMyItems = async () => {
             const email = user?.email;
-            if(email){
-                const url = `http://localhost:5000/items/item/${email}`;
+            if (email) {
+                const url = `https://whispering-ravine-60008.herokuapp.com/items/item/${email}`;
                 const { data } = await axios.get(url);
                 console.log(data)
                 setMyItems(data)
@@ -24,7 +24,7 @@ const MyItems = () => {
     const deleteItems = id => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            const url = `http://localhost:5000/items/${id}`;
+            const url = `https://whispering-ravine-60008.herokuapp.com/items/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

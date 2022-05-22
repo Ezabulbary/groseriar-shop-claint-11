@@ -4,7 +4,7 @@ const useItemDetail = id => {
     const [item, setItem] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/items/${id}`)
+        fetch(`https://whispering-ravine-60008.herokuapp.com/items/${id}`)
             .then(res => res.json())
             .then(data => setItem(data))
     }, [id]);

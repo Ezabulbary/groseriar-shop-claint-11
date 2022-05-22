@@ -9,9 +9,9 @@ const InventoryAllDetails = () => {
 
     const addQuantity = event => {
         event.preventDefault();
-        if (event.target.quantity.value){
+        if (event.target.quantity.value) {
             const newQuantity = quantity + parseInt(event.target.quantity.value);
-            fetch(`http://localhost:5000/items/${inventoryId}`, {
+            fetch(`https://whispering-ravine-60008.herokuapp.com/items/${inventoryId}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
@@ -28,9 +28,9 @@ const InventoryAllDetails = () => {
     };
 
     const handleDelivered = event => {
-        if(quantity > 0){
+        if (quantity > 0) {
             const newQuantity = quantity - 1
-            fetch(`http://localhost:5000/items/${inventoryId}`, {
+            fetch(`https://whispering-ravine-60008.herokuapp.com/items/${inventoryId}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
@@ -52,7 +52,7 @@ const InventoryAllDetails = () => {
             <div style={{ width: '50%', margin: '0 auto' }}>
                 <form onSubmit={addQuantity} class="input-group mb-3">
                     <input type="number" name="quantity" class="form-control" placeholder="Add Quantity" aria-label="Recipient's username" aria-describedby="button-addon2" />
-                    <input type="submit" value="Restock" class="btn btn-outline-success"/>
+                    <input type="submit" value="Restock" class="btn btn-outline-success" />
                 </form>
             </div>
             <div className="card m-3">

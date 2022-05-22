@@ -18,7 +18,7 @@ const ManageAllItems = () => {
         const getMyItems = async () => {
             const email = user?.email;
             if (email) {
-                const url = `http://localhost:5000/items/item/${email}`;
+                const url = `https://whispering-ravine-60008.herokuapp.com/items/item/${email}`;
                 const { data } = await axios.get(url);
                 console.log(data)
                 setItems(data)
@@ -31,7 +31,7 @@ const ManageAllItems = () => {
     const deleteItems = id => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            const url = `http://localhost:5000/items/${id}`;
+            const url = `https://whispering-ravine-60008.herokuapp.com/items/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
