@@ -1,24 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import useItemDetail from '../../../hook/useItemDetail';
 
 const InventoryAllDetails = () => {
     const { inventoryId } = useParams();
-    const [item ] = useItemDetail(inventoryId);
+    const [item, setItem] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/items/${inventoryId
+}`)
+            .then(res => res.json())
+            .then(data => setItem(data))
+    }, [inventoryId]);
     const { _id, name, image, about, price, quantity, supplier_name } = item;
 
     const addQuantity = event => {
         event.preventDefault();
-        const quantity = event.target.quantity.value;
+        const newQuantity = quantity + parseInt(event.target.quantity.value)
+        console.log(newQuantity)
         fetch(`http://localhost:5000/items/${inventoryId}`, {
             method: 'PUT',
             headers: {
-                'content-type' : 'aplication/json'
+                'content-type' : 'application/json'
             },
-            body: JSON.stringify(quantity)
+            body: JSON.stringify({newQuantity})
         })
         .then(res => res.json())
         .then(data => {
+            setItem(data.item)
+            console.log(data);
+            event.target.reset();
+        })
+    };
+
+    const handleDelivered = event => {
+        const newQuantity = quantity - 1
+        console.log(newQuantity)
+        fetch(`http://localhost:5000/items/${inventoryId}`, {
+            method: 'PUT',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify({newQuantity})
+        })
+        .then(res => res.json())
+        .then(data => {
+            setItem(data.item)
             console.log(data);
             event.target.reset();
         })
@@ -28,9 +54,9 @@ const InventoryAllDetails = () => {
     return (
         <div className='container text-center py-5'>
             <div style={{ width: '50%', margin: '0 auto' }}>
-                <form onClick={addQuantity} class="input-group mb-3">
-                    <input type="text" name="quantity" class="form-control" placeholder="Add Quantity" aria-label="Recipient's username" aria-describedby="button-addon2" />
-                    <button type="button" class="btn btn-outline-success">Restock</button>
+                <form onSubmit={addQuantity} class="input-group mb-3">
+                    <input type="number" name="quantity" class="form-control" placeholder="Add Quantity" aria-label="Recipient's username" aria-describedby="button-addon2" />
+                    <input type="submit" value="Restock" class="btn btn-outline-success"/>
                 </form>
             </div>
             <div className="card m-3">
@@ -43,11 +69,11 @@ const InventoryAllDetails = () => {
                             <h5 className="card-title">{name}</h5>
                             <p className="card-text"><small className="text-muted">Id: {_id}</small></p>
                             <p className="card-text" style={{ textAlign: 'justify' }}>{about}</p>
-                            <p className="card-text"><span className='fw-bold'>Price:</span> {price}</p>
-                            <p className="card-text"><span className='fw-bold'>Quantity:</span> {quantity}</p>
+                            <p className="card-text"><span className='fw-bold'>Price:</span> ${price}</p>
+                            <p className="card-text"><span className='fw-bold'>Quantity:</span> {quantity} kg</p>
                             <p className="card-text"><span className='fw-bold'>Sold:</span> {0}</p>
                             <p className="card-text"><span className='fw-bold'>Supplier Name:</span> {supplier_name}</p>
-                            <button className='btn btn-success m-4'>Delivered</button>
+                            <button onClick={handleDelivered} className='btn btn-success m-4'>Delivered</button>
                         </div>
                     </div>
                 </div>

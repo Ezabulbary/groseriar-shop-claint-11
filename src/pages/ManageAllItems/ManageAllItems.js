@@ -1,9 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useItems from '../../hook/useItems';
 
 const ManageAllItems = () => {
     const [items, setItems] = useItems();
+    const navigate = useNavigate();
+
+    const getItemDetail = id => {
+        navigate(`/Inventory/${id}`)
+    }
 
     const deleteItems = id => {
         const proceed = window.confirm('Are you sure?');
@@ -34,6 +39,7 @@ const ManageAllItems = () => {
                             <th scope="col">Price</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Button</th>
+                            <th scope="col">Button</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,7 +50,8 @@ const ManageAllItems = () => {
                                 <td>{item.supplier_name}</td>
                                 <td>{item.price}</td>
                                 <td>{item.quantity}</td>
-                                <td><button onClick={() => deleteItems(item._id)} className='rounded'>Delete</button></td>
+                                <td><button onClick={() => getItemDetail(item?._id)} className='btn btn-success'>Stock Update</button></td>
+                                <td><button onClick={() => deleteItems(item._id)} className='btn btn-danger'>Delete</button></td>
                             </tr>)
                         }
                     </tbody>

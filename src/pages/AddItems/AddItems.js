@@ -13,7 +13,7 @@ const AddItems = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    let from = location?.state?.from?.pathname || "/manageAllItems";
+    let from = location?.state?.from?.pathname || "/myItems";
     
     const onSubmit = data => {
         axios.post('http://localhost:5000/items', data)

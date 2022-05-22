@@ -50,7 +50,7 @@ const MyItems = () => {
         <div className='container mx-auto text-center'>
             <h2 className='my-4'>My All Items {myItems.length}</h2>
             {/* {
-                myItems.map(item => <div className='table-responsive'>
+                myItems.map(item => <div key={item._id} className='table-responsive'>
                     <table class="table table-success table-striped">
                         <thead>
                             <tr>
