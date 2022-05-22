@@ -1,16 +1,28 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useParams } from 'react-router-dom';
+import auth from '../../../firebase.init';
 
 const InventoryAllDetails = () => {
+    const [user] = useAuthState(auth);
     const { inventoryId } = useParams();
     const [item, setItem] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/items/${inventoryId
-}`)
-            .then(res => res.json())
-            .then(data => setItem(data))
-    }, [inventoryId]);
+        const getMyItems = async () => {
+            const email = user?.email;
+            if (email) {
+                const url = `http://localhost:5000/items/item/${email}`;
+                const { data } = await axios.get(url);
+                console.log(data)
+                setItem(data)
+            }
+        }
+
+        getMyItems()
+    }, [user]);
+    
     const { _id, name, image, about, price, quantity, supplier_name } = item;
 
     const addQuantity = event => {

@@ -35,17 +35,17 @@ const AddItems = () => {
                 <legend className='my-4'>Add Items</legend>
                 <input className='w-100 mb-4' placeholder='Item Name' {...register("name", { required: true })} />
                 <br />
-                <input className='w-100 mb-4' placeholder='Supplier Name' {...register("supplier_name", { required: true })} />
-                <br />
                 <input className='w-100 mb-4' placeholder='Supplier Email' defaultValue={user?.email} readOnly {...register("email", { required: true })} />
+                <br />
+                <input className='w-100 mb-4' placeholder='Image' {...register("image", { required: true })} />
+                <br />
+                <textarea className='w-100 mb-4' placeholder='Description' {...register("about", { required: true })} />
                 <br />
                 <input className='w-100 mb-4' placeholder='Price' {...register("price", { required: true })} />
                 <br />
                 <input className='w-100 mb-4' placeholder='Quantity' {...register("quantity", { required: true })} />
                 <br />
-                <textarea className='w-100 mb-4' placeholder='Description' {...register("about", { required: true })} />
-                <br />
-                <input className='w-100 mb-4' placeholder='Image' {...register("image", { required: true })} />
+                <input className='w-100 mb-4' placeholder='Supplier Name' {...register("supplier_name", { required: true })} />
 
                 {errors.exampleRequired && <span>This field is required</span>}
                 <br />
