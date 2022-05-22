@@ -1,65 +1,51 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import auth from '../../../firebase.init';
+import useItemDetail from '../../../hook/useItemDetail';
 
 const InventoryAllDetails = () => {
-    const [user] = useAuthState(auth);
     const { inventoryId } = useParams();
-    const [item, setItem] = useState([]);
-
-    useEffect(() => {
-        const getMyItems = async () => {
-            const email = user?.email;
-            if (email) {
-                const url = `http://localhost:5000/items/item/${email}`;
-                const { data } = await axios.get(url);
-                console.log(data)
-                setItem(data)
-            }
-        }
-
-        getMyItems()
-    }, [user]);
-    
+    const [item, setItem] = useItemDetail(inventoryId);
     const { _id, name, image, about, price, quantity, supplier_name } = item;
 
     const addQuantity = event => {
         event.preventDefault();
-        const newQuantity = quantity + parseInt(event.target.quantity.value)
-        console.log(newQuantity)
-        fetch(`http://localhost:5000/items/${inventoryId}`, {
-            method: 'PUT',
-            headers: {
-                'content-type' : 'application/json'
-            },
-            body: JSON.stringify({newQuantity})
-        })
-        .then(res => res.json())
-        .then(data => {
-            setItem(data.item)
-            console.log(data);
-            event.target.reset();
-        })
+        if (event.target.quantity.value){
+            const newQuantity = quantity + parseInt(event.target.quantity.value);
+            console.log(newQuantity)
+            fetch(`http://localhost:5000/items/${inventoryId}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({ newQuantity })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setItem(data.item)
+                    console.log(data);
+                    event.target.reset();
+                })
+        }
     };
 
     const handleDelivered = event => {
-        const newQuantity = quantity - 1
-        console.log(newQuantity)
-        fetch(`http://localhost:5000/items/${inventoryId}`, {
-            method: 'PUT',
-            headers: {
-                'content-type' : 'application/json'
-            },
-            body: JSON.stringify({newQuantity})
-        })
-        .then(res => res.json())
-        .then(data => {
-            setItem(data.item)
-            console.log(data);
-            event.target.reset();
-        })
+        if(quantity > 0){
+            const newQuantity = quantity - 1
+            console.log(newQuantity)
+            fetch(`http://localhost:5000/items/${inventoryId}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({ newQuantity })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setItem(data.item)
+                    console.log(data);
+                    event.target.reset();
+                })
+        }
     };
 
 
@@ -80,11 +66,11 @@ const InventoryAllDetails = () => {
                         <div className="card-body">
                             <h5 className="card-title">{name}</h5>
                             <p className="card-text"><small className="text-muted">Id: {_id}</small></p>
+                            <p className="card-text"><span className='fw-bold'>Supplier Name:</span> {supplier_name}</p>
                             <p className="card-text" style={{ textAlign: 'justify' }}>{about}</p>
                             <p className="card-text"><span className='fw-bold'>Price:</span> ${price}</p>
                             <p className="card-text"><span className='fw-bold'>Quantity:</span> {quantity} kg</p>
                             <p className="card-text"><span className='fw-bold'>Sold:</span> {0}</p>
-                            <p className="card-text"><span className='fw-bold'>Supplier Name:</span> {supplier_name}</p>
                             <button onClick={handleDelivered} className='btn btn-success m-4'>Delivered</button>
                         </div>
                     </div>

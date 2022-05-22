@@ -1,18 +1,30 @@
-import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+import React, { useEffect } from 'react';
+import { Card, CardGroup, Figure } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
+import auth from '../../../firebase.init';
 import useItems from '../../../hook/useItems';
-import Inventory from '../Inventory/Inventory';
 
 const Inventories = () => {
-    const [items] = useItems();
-    const homeItems = (items.slice(2, 8));
+    const [user] = useAuthState(auth);
+    const [items, setItems] = useItems();
+    const homeItems = (items.slice(0, 6));
 
-    const { inventoryId } = useParams();
-    const navigate = useNavigate();
+    useEffect(() => {
+        const getMyItems = async () => {
+            const email = user?.email;
+            if (email) {
+                const url = `http://localhost:5000/items/item/${email}`;
+                const { data } = await axios.get(url);
+                console.log(data)
+                setItems(data)
+            }
+        }
 
-    const getItems = () => {
-        navigate('/manageAllItems')
-    }
+        getMyItems()
+    }, [user]);
+
 
     return (
         <div className='text-center py-5'>
@@ -20,13 +32,26 @@ const Inventories = () => {
             <h5 className='pb-4'>Get Your Product from Items</h5>
             <div className='row justify-content-center align-items-center'>
                 {
-                    homeItems.map(item => <Inventory
-                        key={item._id}
-                        item={item}
-                    ></Inventory>)
+                    homeItems.map(item => <div className='col-8 col-md-4 col-lg-3 m-2 p-2'>
+                        <CardGroup>
+                            <Card>
+                                <Figure className="figure">
+                                    <img src={item.image} className="figure-img img-fluid rounded" alt="..." />
+                                </Figure>
+                                <Card.Body>
+                                    <Card.Title>{item.name}</Card.Title>
+                                    <p style={{ textAlign: 'justify' }}>{item.about}</p>
+                                    <Card.Text><span className='fw-bold'>Price:</span> {item.price}</Card.Text>
+                                    <Card.Text><span className='fw-bold'>Quantity:</span> {item.quantity}</Card.Text>
+                                    <Card.Text><span className='fw-bold'>Supplier Name:</span> {item.supplier_name}</Card.Text>
+                                    <Link to={`/Inventory/${item._id}`}><button className='btn btn-success m-4'>Stock Update</button></Link>
+                                </Card.Body>
+                            </Card>
+                        </CardGroup>
+                    </div>)
                 }
             </div>
-            <button onClick={() => getItems(inventoryId)} className='btn btn-success m-4'>All Items</button>
+            <Link to={'/manageAllItems'}><button className='btn btn-success m-4'>All Items</button></Link>
         </div>
     );
 };

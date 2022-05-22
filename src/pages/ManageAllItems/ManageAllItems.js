@@ -1,14 +1,32 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
 import useItems from '../../hook/useItems';
 
 const ManageAllItems = () => {
+    const [user] = useAuthState(auth);
     const [items, setItems] = useItems();
     const navigate = useNavigate();
 
     const getItemDetail = id => {
         navigate(`/Inventory/${id}`)
     }
+
+    useEffect(() => {
+        const getMyItems = async () => {
+            const email = user?.email;
+            if (email) {
+                const url = `http://localhost:5000/items/item/${email}`;
+                const { data } = await axios.get(url);
+                console.log(data)
+                setItems(data)
+            }
+        }
+
+        getMyItems()
+    }, [user]);
 
     const deleteItems = id => {
         const proceed = window.confirm('Are you sure?');
