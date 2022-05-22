@@ -11,7 +11,6 @@ const InventoryAllDetails = () => {
         event.preventDefault();
         if (event.target.quantity.value){
             const newQuantity = quantity + parseInt(event.target.quantity.value);
-            console.log(newQuantity)
             fetch(`http://localhost:5000/items/${inventoryId}`, {
                 method: 'PUT',
                 headers: {
@@ -31,7 +30,6 @@ const InventoryAllDetails = () => {
     const handleDelivered = event => {
         if(quantity > 0){
             const newQuantity = quantity - 1
-            console.log(newQuantity)
             fetch(`http://localhost:5000/items/${inventoryId}`, {
                 method: 'PUT',
                 headers: {
